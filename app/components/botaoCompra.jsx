@@ -2,6 +2,9 @@ import React from "react";
 import styles from "./botaoCompra.module.css";
 
 function BotaoCompra({ total }) {
+  const handleClick = () => {
+    alert("Compra realizada com sucesso!");
+  };
   return (
     <button className={styles.botao}>
       Comprar
