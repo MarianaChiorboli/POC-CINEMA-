@@ -13,7 +13,7 @@ Este projeto consiste em uma simulação de um aplicativo de cinema, permitindo 
 ## Modo Escuro
 ![Tela PC Modo escuro](https://github.com/user-attachments/assets/804d5003-d186-46d5-aac9-c8aab687765a)
 
-## Metodologia
+## 💡 Metodologia
 Para realizar a construção do nosso projeto, utilizamos dois componentes, um para o assento e outro para o botão de compra
 Cada um com seu modulo CSS
 
