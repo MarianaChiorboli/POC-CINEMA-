@@ -146,4 +146,4 @@ export default function HomePage() {
 ## 📎 Créditos
 - Desenvolvido por [Mariana Chiorboli - 10435657](https://github.com/MarianaChiorboli).
 - Desenvolvido por [Thiago Kauã - 10420686](https://github.com/ThiagoKauaPestana).
-- Desenvolvido por [Murilo Franciscon Miotto - 10438787](https://github.com/seu-usuario).
+- Desenvolvido por [Murilo Franciscon Miotto - 10438787](https://github.com/murilofranciscon).
