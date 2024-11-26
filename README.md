@@ -14,7 +14,7 @@ Este projeto consiste em uma simulação de um aplicativo de cinema, permitindo 
 ![Tela PC Modo escuro](https://github.com/user-attachments/assets/804d5003-d186-46d5-aac9-c8aab687765a)
 
 ## Metodologia
-Para realizar a construção do nosso projeto, utilizamos 2 componentes, um para o assento e outro para o botão de compra
+Para realizar a construção do nosso projeto, utilizamos dois componentes, um para o assento e outro para o botão de compra
 Cada um com seu modulo CSS
 
 Botão de Compra
@@ -65,8 +65,83 @@ function Lugar({ reservado, onSelect }) {
 
 export default Lugar;
 ```
+No arquivo page construimos a tela desta forma
+``` tsx
+export default function HomePage() {
+  const [total, setTotal] = useState(0);
 
+  useEffect(() => {
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    document.body.classList.toggle("dark", prefersDark);
 
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleThemeChange = (e: MediaQueryListEvent) => {
+      document.body.classList.toggle("dark", e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleThemeChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleThemeChange);
+    };
+  }, []);
+
+  const handleSelect = (isSelected) => {
+    setTotal((prev) => (isSelected ? prev + filme.preco : prev - filme.preco));
+  };
+  const handleCompra = () => {
+    if (total > 0) {
+      alert("Compra realizada com sucesso!");
+    } else {
+      alert("Nenhum assento selecionado.");
+    }
+  };
+
+  return (
+    <main className="container">
+      <h1 className="title">{filme.titulo}</h1>
+      <h2 className="subtitulo">{filme.horario}</h2>
+      <article>
+        <section className="lugaresGrid">
+          {filme.lugares.map((lugar) => (
+            <Lugar
+              key={lugar.id}
+              reservado={lugar.reservado}
+              onSelect={handleSelect}
+            />
+          ))}
+        </section>
+        <section className="info">
+          <h5>sinopse do filme</h5>
+          <p>{filme.sinopse}</p>
+          <h5>data de lançamento</h5>
+          <p>{filme.dataLancamento}</p>
+          <h5>Direção</h5>
+          <p>{filme.direcao}</p>
+        </section>
+      </article>
+      <h6>tela</h6>
+      <div className="tela"></div>
+      <div className="legenda">
+        <ul>
+          <li>
+            <span className="assento-livre"></span>livre
+          </li>
+          <li>
+            <span className="assento-indisponivel"></span>indisponível
+          </li>
+          <li>
+            <span className="assento-selecionado"></span>selecionado
+          </li>
+        </ul>
+      </div>
+      <BotaoCompra total={total} confirmarCompra={handleCompra} />
+    </main>
+  );
+}
+```
 
 ## 📎 Créditos
 - Desenvolvido por [Mariana Chiorboli - 10435657](https://github.com/MarianaChiorboli).
